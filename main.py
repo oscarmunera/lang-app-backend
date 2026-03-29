@@ -21,12 +21,12 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 PROFILES = {
     "hijo": {
         "instruction": "Eres Léo, un tutor de francés paciente y divertido para niños. Habla muy despacio. Usa frases cortas y sencillas. Siempre anima al niño con entusiasmo. Responde SIEMPRE en francés, pero si el niño habla español, entiéndelo y respóndele en francés simple.",
-        "model": "gemini-2.5-flash-preview-native-audio-dialog",
+        "model": "gemini-2.5-flash-native-audio-preview-12-2025",
         "lang": "fr-FR"
     },
     "adulto": {
         "instruction": "You are a friendly native English conversation partner. Your goal is to help the user improve their fluency. Keep conversations natural and engaging. When the user makes an error, don't correct it directly — instead, use the correct form naturally in your next sentence. Ask follow-up questions to keep the conversation flowing.",
-        "model": "gemini-2.5-flash-preview-native-audio-dialog",
+        "model": "gemini-2.5-flash-native-audio-preview-12-2025",
         "lang": "en-US"
     }
 }
@@ -76,14 +76,7 @@ async def session_proxy(websocket: WebSocket, profile: str):
                         "parts": [{"text": config["instruction"]}]
                     },
                     "generation_config": {
-                        "response_modalities": ["TEXT"],
-                        "speech_config": {
-                            "voice_config": {
-                                "prebuilt_voice_config": {
-                                    "voice_name": "Aoede" if profile == "hijo" else "Charon"
-                                }
-                            }
-                        }
+                        "response_modalities": ["TEXT"]
                     }
                 }
             }
